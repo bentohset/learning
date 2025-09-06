@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package rpc;
+
+option java_multiple_files = true;
+option java_package = "rpc";
+option java_outer_classname = "RpcProto";
+
+// Base RPC
+message RpcRequest {
+  int64 requestId = 1;
+  string service = 2;
+  string method = 3;
+  bytes payload = 4; // serialized request message
+}
+
+message RpcResponse {
+  int64 requestId = 1;
+  bool success = 2;
+  string error = 3;
+  bytes payload = 4; // serialized response message
+}
+
+// Example service-specific message
+message EchoRequest {
+  string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+}
